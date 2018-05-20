@@ -1,5 +1,11 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const keys = require('./config/keys');
 require('./services/passport');
+
+// instruct mongoose to connect to MongoDB
+mongoose.connect(keys.mongoURI);
+
 
 const app = express();
 
