@@ -5,7 +5,7 @@ const app = express();
 
 // Route handler
 app.get('/', (req, res) => {
-  res.send({ hi: 'there' });
+  res.send({ bye: 'buddy' });
 });
 
 // Heroku will inject env variables
