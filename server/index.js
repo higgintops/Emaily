@@ -1,12 +1,13 @@
-// NOTE: Nodejs uses commonjs modules
-// so need to use require
 const express = require('express');
+require('./services/passport');
+
 const app = express();
 
-// Route handler
-app.get('/', (req, res) => {
-  res.send({ bye: 'buddy' });
-});
+// when we require the authRoutes files -- it returns a function
+// so here we are immediately invoking this function and passing
+// in the `app` as the function parameter
+require('./routes/authRoutes')(app);
+
 
 // Heroku will inject env variables
 const PORT = process.env.PORT || 5000;
