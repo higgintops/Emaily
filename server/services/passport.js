@@ -8,6 +8,18 @@ const keys = require('../config/keys');
 // in our MongoDB
 const User = mongoose.model('users');
 
+// For cookies serializeUser & deserializeUser
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  // search our collection of users with id
+  User.findById(id).then( (user) => {
+    done(null, user);
+  });
+});
+
 // tell passport how to make use of the GoogleStrategy
 passport.use(
   new GoogleStrategy(
